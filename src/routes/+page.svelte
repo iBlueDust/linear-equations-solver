@@ -1,3 +1,7 @@
+<script lang="ts">
+  import Matrix from '@/components/Matrix.svelte'
+</script>
+
 <main>
   <div class="wrapper">
     <header>
@@ -13,12 +17,7 @@
         </span>
       </section>
       <section class="window-body">
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit
-          quaerat suscipit debitis quas ex minus sint nihil non! Architecto,
-          mollitia? Perspiciatis dolorem cupiditate pariatur numquam voluptatum
-          praesentium nostrum eligendi!
-        </span>
+        <Matrix />
       </section>
     </article>
   </div>
