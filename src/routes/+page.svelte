@@ -7,16 +7,18 @@
       <section class="window-header">
         <span class="title">Linear Equation Solver.exe</span>
         <span class="control-button-group">
-          <span class="material-symbols-outlined"> close </span>
+          <span class="control-button">
+            <span class="material-symbols-outlined">close</span>
+          </span>
         </span>
       </section>
       <section class="window-body">
-        <span
-          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro odit
           quaerat suscipit debitis quas ex minus sint nihil non! Architecto,
           mollitia? Perspiciatis dolorem cupiditate pariatur numquam voluptatum
-          praesentium nostrum eligendi!</span
-        >
+          praesentium nostrum eligendi!
+        </span>
       </section>
     </article>
   </div>
@@ -26,19 +28,22 @@
   main {
     display: grid;
     min-height: 100vh;
+    padding: 8px;
+
     background-color: rgb(233, 215, 52);
     font-family: 'Lora', serif;
 
     justify-content: center;
     align-items: center;
+
     .wrapper {
       max-width: 600px;
     }
 
     header {
       margin: 16px 0;
-      color: white;
-      text-shadow: 2px 2px 0px #000000;
+      color: black;
+      text-shadow: 2px 2px 0px white;
       font-family: 'Unbounded', sans-serif;
     }
 
@@ -46,21 +51,25 @@
       $border-radius: 8px;
       $border-width: 2px;
 
+      margin: $border-width;
+      outline: $border-width solid black;
+
       background-color: white;
-      border: $border-width solid black;
       border-radius: $border-radius;
 
       section.window-header {
+        $height: 32px;
+
         display: flex;
         align-items: center;
 
         width: auto;
-        height: 32px;
+        height: $height;
 
         background-color: #555;
-        border-bottom: $border-width solid black;
-        border-top-left-radius: calc($border-radius - $border-width);
-        border-top-right-radius: calc($border-radius - $border-width);
+        outline: $border-width solid black;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
 
         color: white;
         font-weight: 700;
@@ -81,16 +90,24 @@
           width: 32px;
           height: 32px;
 
-          flex-grow: 0;
-          flex-shrink: 0;
-
-          background-color: red;
-          color: white;
-          border-left: $border-width solid black;
           border-top-right-radius: calc($border-radius - $border-width);
 
-          & > * {
-            margin: auto;
+          .control-button {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: red;
+            overflow: hidden;
+            color: white;
+            border-left: $border-width solid black;
+
+            &:last-child {
+              border-top-right-radius: calc($border-radius - $border-width);
+            }
           }
         }
       }
