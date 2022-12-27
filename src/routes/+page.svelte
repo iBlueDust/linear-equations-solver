@@ -24,12 +24,19 @@
 </main>
 
 <style lang="scss">
+  @import '@/constants.scss';
+
+  :global(body) {
+    min-width: fit-content;
+    background-color: rgb(233, 215, 52);
+  }
+
   main {
     display: grid;
-    min-height: 100vh;
     padding: 8px;
+    min-width: fit-content;
+    min-height: 100vh;
 
-    background-color: rgb(233, 215, 52);
     font-family: 'Lora', serif;
 
     justify-content: center;
@@ -37,6 +44,7 @@
 
     .wrapper {
       max-width: 600px;
+      min-width: fit-content;
     }
 
     header {
@@ -47,14 +55,14 @@
     }
 
     article.window {
-      $border-radius: 8px;
-      $border-width: 2px;
-
-      margin: $border-width;
+      min-width: fit-content;
+      margin: $border-width calc($border-width + $shadow-size)
+        calc($border-width + $shadow-size) $border-width;
       outline: $border-width solid black;
 
       background-color: white;
       border-radius: $border-radius;
+      box-shadow: $shadow-size $shadow-size 0px rgba(64, 24, 0, 0.5);
 
       section.window-header {
         $height: 32px;
