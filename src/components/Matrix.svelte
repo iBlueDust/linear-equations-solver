@@ -2,14 +2,24 @@
   import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
 
   const commonVariables = ['x', 'y', 'z']
+
+  const MIN_SIZE = 2
+  const MAX_SIZE = 15
   let size = 3
+
+  const clamp = (value: number, min: number, max: number): number => {
+    // debugger
+    return Math.max(min, Math.min(value, max))
+  }
 </script>
 
 <div class="matrix">
   <SizeAdjustButtons
     column
-    on:add={() => void size++}
-    on:remove={() => void size--}
+    value={size}
+    on:add={() => (size = Math.min(size + 1, MAX_SIZE))}
+    on:remove={() => (size = Math.max(size - 1, MIN_SIZE))}
+    on:change={({ detail }) => (size = clamp(detail.value, MIN_SIZE, MAX_SIZE))}
   />
   <table>
     {#each Array(size) as _, i}
@@ -65,13 +75,6 @@
 
       input {
         width: 32px;
-        appearance: textfield;
-
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
       }
     }
 
