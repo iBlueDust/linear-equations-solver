@@ -1,1 +1,108 @@
-<!doctypehtml><html lang=en-us><head><meta charset=utf-8><meta content="text/html; charset=utf-8"http-equiv=Content-Type><title>Emscripten-Generated Code</title><style>.emscripten{padding-right:0;margin-left:auto;margin-right:auto;display:block}textarea.emscripten{font-family:monospace;width:80%}div.emscripten{text-align:center}div.emscripten_border{border:1px solid #000}canvas.emscripten{border:0 none;background-color:#000}</style></head><body><div class=emscripten id=status>Downloading...</div><div class=emscripten><progress hidden id=progress max=100 value=0></progress></div><div class=emscripten_border style=display:none><canvas class=emscripten id=canvas oncontextmenu=event.preventDefault()></canvas></div><div class=emscripten style=display:none><input type=checkbox id=resize>Resize canvas <input type=checkbox id=pointerLock checked>Lock/hide mouse pointer     <input type=button onclick='Module.requestFullscreen(document.getElementById("pointerLock").checked,document.getElementById("resize").checked)'value=Fullscreen></div><hr><textarea class=emscripten id=output rows=45></textarea><hr><script>var Module={preRun:[],postRun:[],print:function(){var e=document.getElementById("output");return e.value="",function(t){arguments.length>1&&(t=Array.prototype.slice.call(arguments).join(" ")),e.value+=t+"\n",e.scrollTop=e.scrollHeight}}(),printErr:function(e){arguments.length>1&&(e=Array.prototype.slice.call(arguments).join(" ")),console.log(e)},canvas:document.getElementById("canvas"),setStatus:function(e){Module.setStatus.interval&&clearInterval(Module.setStatus.interval);var t=e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),n=document.getElementById("status"),l=document.getElementById("progress");t?(e=t[1],l.value=100*parseInt(t[2]),l.max=100*parseInt(t[4]),l.hidden=!1):(l.value=null,l.max=null,l.hidden=!0),n.innerHTML=e},totalDependencies:0,monitorRunDependencies:function(e){this.totalDependencies=Math.max(this.totalDependencies,e),Module.setStatus(e?"Preparing... ("+(this.totalDependencies-e)+"/"+this.totalDependencies+")":"All downloads complete.")}};Module.setStatus("Downloading...")</script><script async src=solver.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Emscripten-Generated Code</title>
+    <style>
+      .emscripten {
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      textarea.emscripten {
+        font-family: monospace;
+        width: 80%;
+      }
+      div.emscripten {
+        text-align: center;
+      }
+      div.emscripten_border {
+        border: 1px solid #000;
+      }
+      canvas.emscripten {
+        border: 0 none;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="emscripten" id="status">Downloading...</div>
+    <div class="emscripten">
+      <progress hidden id="progress" max="100" value="0"></progress>
+    </div>
+    <div class="emscripten_border" style="display: none">
+      <canvas
+        class="emscripten"
+        id="canvas"
+        oncontextmenu="event.preventDefault()"
+      ></canvas>
+    </div>
+    <div class="emscripten" style="display: none">
+      <input type="checkbox" id="resize" />Resize canvas
+      <input type="checkbox" id="pointerLock" checked />Lock/hide mouse pointer
+         
+      <input
+        type="button"
+        onclick='Module.requestFullscreen(document.getElementById("pointerLock").checked,document.getElementById("resize").checked)'
+        value="Fullscreen"
+      />
+    </div>
+    <hr />
+    <textarea class="emscripten" id="output" rows="45"></textarea>
+    <hr />
+    <script>
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function () {
+          var e = document.getElementById('output')
+          return (
+            (e.value = ''),
+            function (t) {
+              arguments.length > 1 &&
+                (t = Array.prototype.slice.call(arguments).join(' ')),
+                (e.value += t + '\n'),
+                (e.scrollTop = e.scrollHeight)
+            }
+          )
+        })(),
+        printErr: function (e) {
+          arguments.length > 1 &&
+            (e = Array.prototype.slice.call(arguments).join(' ')),
+            console.log(e)
+        },
+        canvas: document.getElementById('canvas'),
+        setStatus: function (e) {
+          Module.setStatus.interval && clearInterval(Module.setStatus.interval)
+          var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/),
+            n = document.getElementById('status'),
+            l = document.getElementById('progress')
+          t
+            ? ((e = t[1]),
+              (l.value = 100 * parseInt(t[2])),
+              (l.max = 100 * parseInt(t[4])),
+              (l.hidden = !1))
+            : ((l.value = null), (l.max = null), (l.hidden = !0)),
+            (n.innerHTML = e)
+        },
+        totalDependencies: 0,
+        monitorRunDependencies: function (e) {
+          ;(this.totalDependencies = Math.max(this.totalDependencies, e)),
+            Module.setStatus(
+              e
+                ? 'Preparing... (' +
+                    (this.totalDependencies - e) +
+                    '/' +
+                    this.totalDependencies +
+                    ')'
+                : 'All downloads complete.',
+            )
+        },
+      }
+      Module.setStatus('Downloading...')
+    </script>
+    <script async src="solver.js"></script>
+  </body>
+</html>

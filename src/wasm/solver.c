@@ -106,6 +106,8 @@ EXTERN EMSCRIPTEN_KEEPALIVE bool solve(
 #define SIZE 3
 
 int main() {
+#if __EMSCRIPTEN__
+
 	double coefficients[SIZE][SIZE] = {
 		{ 1.0, 1.0, -1.0 },
 		{ 1.0, 0.0, 1.0 },
@@ -129,6 +131,7 @@ int main() {
 		solution[1],
 		solution[2]
 	);
+#endif
 
 	return 0;
 }
