@@ -49,7 +49,12 @@ export const Module = {
 
 export let isInitialized = false
 export default () =>
-	new Promise<void>(resolve => {
+	new Promise<void>((resolve) => {
+		if (isInitialized) {
+			resolve()
+			return
+		}
+
 		if (window.Module == null) window.Module = Module
 
 		if (document.getElementById('wasm-solver-bootstrap-script')) return
@@ -60,17 +65,17 @@ export default () =>
 		script.src = './solver.generated.js'
 		script.onload = () => {
 			Module.onRuntimeInitialized = resolve
+			isInitialized = true
 		}
 		document.body.append(script)
-	}
-)
+	})
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function requireInitialization<FunctionType extends (...args: any[]) => any>(
 	func: FunctionType
 ) {
 	return (...args: unknown[]) => {
-		if (window.Module == null)
+		if (isInitialized)
 			throw new Error(
 				'Solver has not been initialized yet. Initialize by ' +
 					'calling the default export (it is a function).'
@@ -104,7 +109,7 @@ export const ping = requireInitialization(() =>
 // 			['number', 'number', 'number', 'number'], // argument types
 // 			[coefficientsArray, constantsArray, size, solutionArray]
 // 		)
-
+//
 // 		return Array.from(solutionArray)
 // 	}
 // )

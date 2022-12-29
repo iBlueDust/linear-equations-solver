@@ -22,8 +22,8 @@
 	$: constants = Array(equationCount).fill(undefined)
 
 	const calculate = async () => {
-		if (window.Module == null) await initSolver().then(ping)
-		else ping()
+		await initSolver()
+		ping()
 	}
 </script>
 
