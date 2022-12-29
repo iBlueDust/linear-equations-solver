@@ -5,6 +5,7 @@
 	import Window from '@/components/Window.svelte'
 
 	let equationCount = 3
+	let errorMessage = ''
 
 	const MIN_EQUATION_COUNT = 2
 	const MAX_EQUATION_COUNT = 15
@@ -47,6 +48,7 @@
 					<Matrix size={equationCount} bind:coefficients bind:constants />
 					<SolutionPanel solution={Array(equationCount).fill(null)} />
 					<div class="submit">
+						<span class='error-message'>{errorMessage}</span>
 						<input type="reset" value="Clear" />
 						<input type="submit" value="Calculate" />
 					</div>
@@ -96,6 +98,7 @@ main {
 		form{
 			display: grid;
 			justify-content: center;
+			align-items: flex-end;
 			gap: 16px;
 			grid-auto-rows: auto;
 			grid-template-columns: auto 1fr auto;
@@ -103,8 +106,13 @@ main {
 				'size matrix solution'
 				'submit submit submit';
 
+			.error-message {
+				color: red;
+			}
+
 			.submit {
-				justify-self: right;
+				width: 100%;
+				text-align: right;
 				grid-area: submit;
 
 				button,
