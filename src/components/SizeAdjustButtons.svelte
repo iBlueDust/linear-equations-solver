@@ -5,6 +5,8 @@
   export let column = false
 
   export let value: number
+  export let min: number | undefined = undefined
+  export let max: number | undefined = undefined
 
   const dispatch = createEventDispatcher<{
     change: { value: number }
@@ -12,11 +14,21 @@
     remove: Event
   }>()
 
-  const onAdd = (event: Event) => dispatch('add', event)
-  const onRemove = (event: Event) => dispatch('remove', event)
+  const onAdd = (event: Event) => {
+    dispatch('add', event)
+    value++
+    onChange()
+  }
+  const onRemove = (event: Event) => {
+    dispatch('remove', event)
+    value--
+    onChange()
+  }
 
   const onChange = () => {
-    // debugger
+    if (min !== undefined) value = Math.max(min, value)
+    if (max !== undefined) value = Math.min(max, value)
+
     dispatch('change', { value })
   }
 </script>
@@ -43,15 +55,16 @@
 
   .size-adjust-buttons {
     display: inline-grid;
-    gap: 16px;
+    align-content: center;
+    gap: 12px;
 
     &.row {
-      grid-template-columns: auto auto;
+      grid-template-columns: repeat(auto, 3);
       grid-template-rows: auto;
     }
     &.column {
       grid-template-columns: auto;
-      grid-template-rows: auto auto;
+      grid-template-rows: repeat(auto, 3);
     }
   }
 

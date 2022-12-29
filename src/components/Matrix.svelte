@@ -1,38 +1,23 @@
 <script lang="ts">
-  import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
-
   const commonVariables = ['x', 'y', 'z']
 
-  const MIN_SIZE = 2
-  const MAX_SIZE = 15
-  let size = 3
-
-  const clamp = (value: number, min: number, max: number): number => {
-    // debugger
-    return Math.max(min, Math.min(value, max))
-  }
+  export let size = 3
 </script>
 
 <div class="matrix">
-  <SizeAdjustButtons
-    column
-    value={size}
-    on:add={() => (size = Math.min(size + 1, MAX_SIZE))}
-    on:remove={() => (size = Math.max(size - 1, MIN_SIZE))}
-    on:change={({ detail }) => (size = clamp(detail.value, MIN_SIZE, MAX_SIZE))}
-  />
   <table>
     {#each Array(size) as _, i}
       <tr>
         {#each Array(size) as _, j}
           <td class="coefficient">
-            <input type="number" name={`coefficient-${i}-${j}`} />
-
-            {#if size <= commonVariables.length}
+            <input
+              type="number"
+              name={`coefficient-${i}-${j}`}
+            /><!--
+            -->{#if size <= commonVariables.length}
               {commonVariables[j]}
             {:else}
-              x
-              <sub>{j + 1}</sub>
+              x<sub>{j + 1}</sub>
             {/if}
 
             {#if j < size - 1}
@@ -61,7 +46,7 @@
     align-items: center;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
-    gap: 16px;
+    gap: 32px;
 
     table {
       margin: auto;
@@ -81,6 +66,12 @@
     td.constant {
       padding-left: 1ex;
       background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    tr {
+      display: block;
+      height: $row-height;
+      overflow: hidden;
     }
 
     tr:first-child td.constant {

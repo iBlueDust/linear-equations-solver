@@ -1,5 +1,12 @@
 <script lang="ts">
   import Matrix from '@/components/Matrix.svelte'
+  import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
+  import SolutionPanel from '@/components/SolutionPanel.svelte'
+
+  let equationCount = 3
+
+  const MIN_EQUATION_COUNT = 2
+  const MAX_EQUATION_COUNT = 15
 </script>
 
 <main>
@@ -17,7 +24,13 @@
         </span>
       </section>
       <section class="window-body">
-        <Matrix />
+        <SizeAdjustButtons
+          bind:value={equationCount}
+          min={MIN_EQUATION_COUNT}
+          max={MAX_EQUATION_COUNT}
+        />
+        <Matrix size={equationCount} />
+        <SolutionPanel solution={Array(equationCount).fill(null)} />
       </section>
     </article>
   </div>
@@ -37,7 +50,7 @@
     min-width: fit-content;
     min-height: 100vh;
 
-    font-family: 'Lora', serif;
+    font-family: 'Chivo Mono', 'Courier New', Courier, monospace;
 
     justify-content: center;
     align-items: center;
@@ -120,6 +133,13 @@
       }
 
       section.window-body {
+        display: grid;
+        justify-content: center;
+        gap: 32px;
+        grid-auto-rows: auto;
+        grid-auto-columns: auto;
+        grid-auto-flow: column;
+
         padding: 16px;
       }
     }
