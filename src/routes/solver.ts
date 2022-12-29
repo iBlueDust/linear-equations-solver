@@ -75,7 +75,7 @@ function requireInitialization<FunctionType extends (...args: any[]) => any>(
 	func: FunctionType
 ) {
 	return (...args: unknown[]) => {
-		if (isInitialized)
+		if (!isInitialized)
 			throw new Error(
 				'Solver has not been initialized yet. Initialize by ' +
 					'calling the default export (it is a function).'
