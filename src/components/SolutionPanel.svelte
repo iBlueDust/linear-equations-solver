@@ -33,9 +33,10 @@
   @import '@/constants.scss';
 
   .solution-panel {
+    display: block;
     width: 8em;
     background: rgb(116, 221, 90);
-    outline: $border-width solid black;
+    border: $border-width solid black;
     border-radius: $small-border-radius;
     box-shadow: $small-shadow-size $small-shadow-size 0 rgba(36, 53, 32, 0.521);
 
