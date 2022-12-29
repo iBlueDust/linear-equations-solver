@@ -35,62 +35,65 @@
 				</span>
 			</span>
 
-			<form on:submit|preventDefault={calculate}>
-				<SizeAdjustButtons
-					bind:value={equationCount}
-					min={MIN_EQUATION_COUNT}
-					max={MAX_EQUATION_COUNT}
-				/>
-				<Matrix size={equationCount} bind:coefficients bind:constants />
-				<SolutionPanel solution={Array(equationCount).fill(null)} />
-				<div class="submit">
-					<input type="reset" value="Clear" />
-					<input type="submit" value="Calculate" />
-				</div>
-			</form>
+			<div class="window-body">
+				<p>Insert equations here</p>
+				<br>
+				<form on:submit|preventDefault={calculate}>
+					<SizeAdjustButtons
+						bind:value={equationCount}
+						min={MIN_EQUATION_COUNT}
+						max={MAX_EQUATION_COUNT}
+					/>
+					<Matrix size={equationCount} bind:coefficients bind:constants />
+					<SolutionPanel solution={Array(equationCount).fill(null)} />
+					<div class="submit">
+						<input type="reset" value="Clear" />
+						<input type="submit" value="Calculate" />
+					</div>
+				</form>
+			</div>
 		</Window>
 	</div>
 </main>
 
 <style lang="scss">
-	@import '@/constants.scss';
+@import '@/constants.scss';
 
-	:global(body) {
+:global(body) {
+	min-width: fit-content;
+	background-color: rgb(233, 215, 52);
+}
+
+main {
+	display: grid;
+	padding: 8px;
+	min-width: fit-content;
+	min-height: 100vh;
+
+	justify-content: center;
+	align-items: center;
+
+	.wrapper {
+		max-width: 600px;
 		min-width: fit-content;
-		background-color: rgb(233, 215, 52);
 	}
 
-	main {
-		display: grid;
-		padding: 8px;
-		min-width: fit-content;
-		min-height: 100vh;
+	header {
+		margin: 16px 0;
+		color: black;
+		text-shadow: 2px 2px 0px white;
+		font-family: 'Unbounded', sans-serif;
+	}
 
-		font-family: 'Chivo Mono', 'Courier New', Courier, monospace;
+	.control-button {
+		background-color: red;
+		color: white;
+	}
 
-		justify-content: center;
-		align-items: center;
+	.window-body {
+		padding: 16px;	
 
-		.wrapper {
-			max-width: 600px;
-			min-width: fit-content;
-		}
-
-		header {
-			margin: 16px 0;
-			color: black;
-			text-shadow: 2px 2px 0px white;
-			font-family: 'Unbounded', sans-serif;
-		}
-
-		.control-button {
-			background-color: red;
-			color: white;
-		}
-
-		form {
-			padding: 16px;
-
+		form{
 			display: grid;
 			justify-content: center;
 			gap: 16px;
@@ -112,4 +115,5 @@
 			}
 		}
 	}
+}
 </style>
