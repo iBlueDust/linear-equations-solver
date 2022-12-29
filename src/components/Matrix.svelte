@@ -2,6 +2,23 @@
   const commonVariables = ['x', 'y', 'z']
 
   export let size = 3
+  export let coefficients: (number | undefined)[][] | undefined = undefined
+  export let constants: (number | undefined)[] | undefined = undefined
+
+  const onCoefficientChange = (i: number, j: number, event: Event) => {
+    if (!coefficients || !event.target) return
+
+    const { value } = event.target as HTMLInputElement
+    coefficients[i][j] = value === '' ? undefined : Number.parseInt(value)
+  }
+
+  // TODO: Fix this misleading name
+  const onConstantChange = (i: number, event: Event) => {
+    if (!constants || !event.target) return
+
+    const { value } = event.target as HTMLInputElement
+    constants[i] = value === '' ? undefined : Number.parseInt(value)
+  }
 </script>
 
 <div class="matrix">
@@ -13,6 +30,8 @@
             <input
               type="number"
               name={`coefficient-${i}-${j}`}
+              value={coefficients?.[i][j]}
+              on:change={(...args) => onCoefficientChange(i, j, ...args)}
             /><!--
             -->{#if size <= commonVariables.length}
               {commonVariables[j]}
@@ -28,7 +47,12 @@
 
         <td class="constant">
           =
-          <input type="number" name={`constant-${i}`} />
+          <input
+            type="number"
+            name={`constant-${i}`}
+            value={constants?.[i]}
+            on:change={(...args) => onConstantChange(i, ...args)}
+          />
         </td>
       </tr>
     {/each}

@@ -8,6 +8,17 @@
 
   const MIN_EQUATION_COUNT = 2
   const MAX_EQUATION_COUNT = 15
+
+  let coefficients: (number | undefined)[][]
+  let constants: (number | undefined)[]
+
+  $: coefficients = Array(equationCount)
+    .fill(0)
+    .map(() => Array(equationCount).fill(undefined))
+
+  $: constants = Array(equationCount).fill(undefined)
+
+  const calculate = () => {}
 </script>
 
 <main>
@@ -24,15 +35,18 @@
         </span>
       </span>
 
-      <form on:submit|preventDefault={() => {}}>
+      <form on:submit|preventDefault={calculate}>
         <SizeAdjustButtons
           bind:value={equationCount}
           min={MIN_EQUATION_COUNT}
           max={MAX_EQUATION_COUNT}
         />
-        <Matrix size={equationCount} />
+        <Matrix size={equationCount} bind:coefficients bind:constants />
         <SolutionPanel solution={Array(equationCount).fill(null)} />
-        <input type="submit" value="Calculate" />
+        <div class="submit">
+          <input type="reset" value="Clear" />
+          <input type="submit" value="Calculate" />
+        </div>
       </form>
     </Window>
   </div>
@@ -75,8 +89,6 @@
     }
 
     form {
-      width: fit-content;
-      margin: auto;
       padding: 16px;
 
       display: grid;
@@ -88,10 +100,15 @@
         'size matrix solution'
         'submit submit submit';
 
-      input[type='submit'] {
+      .submit {
         justify-self: right;
         grid-area: submit;
-        padding: 8px 16px;
+
+        button,
+        input[type='submit'],
+        input[type='reset'] {
+          padding: 8px 16px;
+        }
       }
     }
   }
