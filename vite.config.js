@@ -5,13 +5,13 @@ import path from 'path'
 const config = {
 	plugins: [sveltekit()],
 	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}'],
+		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, './src'),
-		},
-	},
+			'@': path.resolve(__dirname, './src')
+		}
+	}
 }
 
 export default config

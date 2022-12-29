@@ -8,3 +8,8 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# WASM build files
+*.generated.html
+*.generated.js
+*.generated.wasm
