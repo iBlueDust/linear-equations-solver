@@ -1,115 +1,115 @@
 <script lang="ts">
-  import Matrix from '@/components/Matrix.svelte'
-  import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
-  import SolutionPanel from '@/components/SolutionPanel.svelte'
-  import Window from '@/components/Window.svelte'
+	import Matrix from '@/components/Matrix.svelte'
+	import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
+	import SolutionPanel from '@/components/SolutionPanel.svelte'
+	import Window from '@/components/Window.svelte'
 
-  let equationCount = 3
+	let equationCount = 3
 
-  const MIN_EQUATION_COUNT = 2
-  const MAX_EQUATION_COUNT = 15
+	const MIN_EQUATION_COUNT = 2
+	const MAX_EQUATION_COUNT = 15
 
-  let coefficients: (number | undefined)[][]
-  let constants: (number | undefined)[]
+	let coefficients: (number | undefined)[][]
+	let constants: (number | undefined)[]
 
-  $: coefficients = Array(equationCount)
-    .fill(0)
-    .map(() => Array(equationCount).fill(undefined))
+	$: coefficients = Array(equationCount)
+		.fill(0)
+		.map(() => Array(equationCount).fill(undefined))
 
-  $: constants = Array(equationCount).fill(undefined)
+	$: constants = Array(equationCount).fill(undefined)
 
-  const calculate = () => {}
+	const calculate = () => {}
 </script>
 
 <main>
-  <div class="wrapper">
-    <header>
-      <h1>System of Linear Equations Solver</h1>
-    </header>
-    <Window>
-      <span slot="title">Linear Equation Solver.exe</span>
+	<div class="wrapper">
+		<header>
+			<h1>System of Linear Equations Solver</h1>
+		</header>
+		<Window>
+			<span slot="title">Linear Equation Solver.exe</span>
 
-      <span slot="control-button-group">
-        <span class="control-button">
-          <span class="material-symbols-outlined">close</span>
-        </span>
-      </span>
+			<span slot="control-button-group">
+				<span class="control-button">
+					<span class="material-symbols-outlined">close</span>
+				</span>
+			</span>
 
-      <form on:submit|preventDefault={calculate}>
-        <SizeAdjustButtons
-          bind:value={equationCount}
-          min={MIN_EQUATION_COUNT}
-          max={MAX_EQUATION_COUNT}
-        />
-        <Matrix size={equationCount} bind:coefficients bind:constants />
-        <SolutionPanel solution={Array(equationCount).fill(null)} />
-        <div class="submit">
-          <input type="reset" value="Clear" />
-          <input type="submit" value="Calculate" />
-        </div>
-      </form>
-    </Window>
-  </div>
+			<form on:submit|preventDefault={calculate}>
+				<SizeAdjustButtons
+					bind:value={equationCount}
+					min={MIN_EQUATION_COUNT}
+					max={MAX_EQUATION_COUNT}
+				/>
+				<Matrix size={equationCount} bind:coefficients bind:constants />
+				<SolutionPanel solution={Array(equationCount).fill(null)} />
+				<div class="submit">
+					<input type="reset" value="Clear" />
+					<input type="submit" value="Calculate" />
+				</div>
+			</form>
+		</Window>
+	</div>
 </main>
 
 <style lang="scss">
-  @import '@/constants.scss';
+	@import '@/constants.scss';
 
-  :global(body) {
-    min-width: fit-content;
-    background-color: rgb(233, 215, 52);
-  }
+	:global(body) {
+		min-width: fit-content;
+		background-color: rgb(233, 215, 52);
+	}
 
-  main {
-    display: grid;
-    padding: 8px;
-    min-width: fit-content;
-    min-height: 100vh;
+	main {
+		display: grid;
+		padding: 8px;
+		min-width: fit-content;
+		min-height: 100vh;
 
-    font-family: 'Chivo Mono', 'Courier New', Courier, monospace;
+		font-family: 'Chivo Mono', 'Courier New', Courier, monospace;
 
-    justify-content: center;
-    align-items: center;
+		justify-content: center;
+		align-items: center;
 
-    .wrapper {
-      max-width: 600px;
-      min-width: fit-content;
-    }
+		.wrapper {
+			max-width: 600px;
+			min-width: fit-content;
+		}
 
-    header {
-      margin: 16px 0;
-      color: black;
-      text-shadow: 2px 2px 0px white;
-      font-family: 'Unbounded', sans-serif;
-    }
+		header {
+			margin: 16px 0;
+			color: black;
+			text-shadow: 2px 2px 0px white;
+			font-family: 'Unbounded', sans-serif;
+		}
 
-    .control-button {
-      background-color: red;
-      color: white;
-    }
+		.control-button {
+			background-color: red;
+			color: white;
+		}
 
-    form {
-      padding: 16px;
+		form {
+			padding: 16px;
 
-      display: grid;
-      justify-content: center;
-      gap: 16px;
-      grid-auto-rows: auto;
-      grid-template-columns: auto 1fr auto;
-      grid-template-areas:
-        'size matrix solution'
-        'submit submit submit';
+			display: grid;
+			justify-content: center;
+			gap: 16px;
+			grid-auto-rows: auto;
+			grid-template-columns: auto 1fr auto;
+			grid-template-areas:
+				'size matrix solution'
+				'submit submit submit';
 
-      .submit {
-        justify-self: right;
-        grid-area: submit;
+			.submit {
+				justify-self: right;
+				grid-area: submit;
 
-        button,
-        input[type='submit'],
-        input[type='reset'] {
-          padding: 8px 16px;
-        }
-      }
-    }
-  }
+				button,
+				input[type='submit'],
+				input[type='reset'] {
+					padding: 8px 16px;
+				}
+			}
+		}
+	}
 </style>
