@@ -60,7 +60,7 @@
 
         border-top-right-radius: calc($border-radius - $border-width);
 
-        .control-button {
+        :global(.control-button) {
           width: 32px;
           height: 32px;
 
