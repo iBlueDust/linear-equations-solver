@@ -60,12 +60,19 @@
 
       input {
         width: 32px;
+        text-align: right;
+        border: 0.5px solid lightgray;
+        border-bottom: 1px solid black;
       }
     }
 
     td.constant {
       padding-left: 1ex;
       background-color: rgba(0, 0, 0, 0.15);
+
+      input {
+        text-align: left;
+      }
     }
 
     tr {

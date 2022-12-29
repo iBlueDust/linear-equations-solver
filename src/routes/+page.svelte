@@ -2,6 +2,7 @@
   import Matrix from '@/components/Matrix.svelte'
   import SizeAdjustButtons from '@/components/SizeAdjustButtons.svelte'
   import SolutionPanel from '@/components/SolutionPanel.svelte'
+  import Window from '@/components/Window.svelte'
 
   let equationCount = 3
 
@@ -14,16 +15,16 @@
     <header>
       <h1>System of Linear Equations Solver</h1>
     </header>
-    <article class="window">
-      <section class="window-header">
-        <span class="title">Linear Equation Solver.exe</span>
-        <span class="control-button-group">
-          <span class="control-button">
-            <span class="material-symbols-outlined">close</span>
-          </span>
+    <Window>
+      <span slot="title">Linear Equation Solver.exe</span>
+
+      <span slot="control-button-group">
+        <span class="control-button">
+          <span class="material-symbols-outlined">close</span>
         </span>
-      </section>
-      <section class="window-body">
+      </span>
+
+      <form on:submit|preventDefault={() => {}}>
         <SizeAdjustButtons
           bind:value={equationCount}
           min={MIN_EQUATION_COUNT}
@@ -31,8 +32,9 @@
         />
         <Matrix size={equationCount} />
         <SolutionPanel solution={Array(equationCount).fill(null)} />
-      </section>
-    </article>
+        <input type="submit" value="Calculate" />
+      </form>
+    </Window>
   </div>
 </main>
 
@@ -67,80 +69,29 @@
       font-family: 'Unbounded', sans-serif;
     }
 
-    article.window {
-      min-width: fit-content;
-      margin: $border-width calc($border-width + $shadow-size)
-        calc($border-width + $shadow-size) $border-width;
-      outline: $border-width solid black;
+    .control-button {
+      background-color: red;
+      color: white;
+    }
 
-      background-color: white;
-      border-radius: $border-radius;
-      box-shadow: $shadow-size $shadow-size 0px rgba(64, 24, 0, 0.5);
+    form {
+      width: fit-content;
+      margin: auto;
+      padding: 16px;
 
-      section.window-header {
-        $height: 32px;
+      display: grid;
+      justify-content: center;
+      gap: 16px;
+      grid-auto-rows: auto;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        'size matrix solution'
+        'submit submit submit';
 
-        display: flex;
-        align-items: center;
-
-        width: auto;
-        height: $height;
-
-        background-color: #555;
-        outline: $border-width solid black;
-        border-top-left-radius: $border-radius;
-        border-top-right-radius: $border-radius;
-
-        color: white;
-        font-weight: 700;
-
-        .title {
-          padding: 0 16px;
-          flex-grow: 1;
-          flex-shrink: 1;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .control-button-group {
-          display: grid;
-          justify-content: center;
-          align-items: center;
-
-          width: 32px;
-          height: 32px;
-
-          border-top-right-radius: calc($border-radius - $border-width);
-
-          .control-button {
-            width: 32px;
-            height: 32px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-color: red;
-            overflow: hidden;
-            color: white;
-            border-left: $border-width solid black;
-
-            &:last-child {
-              border-top-right-radius: calc($border-radius - $border-width);
-            }
-          }
-        }
-      }
-
-      section.window-body {
-        display: grid;
-        justify-content: center;
-        gap: 32px;
-        grid-auto-rows: auto;
-        grid-auto-columns: auto;
-        grid-auto-flow: column;
-
-        padding: 16px;
+      input[type='submit'] {
+        justify-self: right;
+        grid-area: submit;
+        padding: 8px 16px;
       }
     }
   }

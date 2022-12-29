@@ -66,6 +66,10 @@
       grid-template-columns: auto;
       grid-template-rows: repeat(auto, 3);
     }
+
+    input[type='number'] {
+      text-align: center;
+    }
   }
 
   button {

@@ -1,12 +1,22 @@
+input {
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
 input[type=number] {
 	appearance: textfield;
-	text-align: center;
 }
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
+}
+
+button, input[type=button], input[type=submit] {
+	box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+	border: 1px solid black;
+	border-radius: 4px;
 }
 
 .material-symbols-outlined {
