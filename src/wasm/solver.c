@@ -103,9 +103,14 @@ EXTERN EMSCRIPTEN_KEEPALIVE bool solve(
 	return true;
 }
 
+EXTERN EMSCRIPTEN_KEEPALIVE int ping() {
+	printf("Pong!\n");
+	return 1337;
+}
+
 #define SIZE 3
 
-int main() {
+EXTERN EMSCRIPTEN_KEEPALIVE int main() {
 #if __EMSCRIPTEN__
 
 	double coefficients[SIZE][SIZE] = {

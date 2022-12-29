@@ -4,6 +4,8 @@
 	import SolutionPanel from '@/components/SolutionPanel.svelte'
 	import Window from '@/components/Window.svelte'
 
+	import initSolver, { ping } from './solver'
+
 	let equationCount = 3
 	let errorMessage = ''
 
@@ -19,7 +21,10 @@
 
 	$: constants = Array(equationCount).fill(undefined)
 
-	const calculate = () => {}
+	const calculate = async () => {
+		if (window.Module == null) await initSolver().then(ping)
+		else ping()
+	}
 </script>
 
 <main>
@@ -38,7 +43,7 @@
 
 			<div class="window-body">
 				<p>Insert equations here</p>
-				<br>
+				<br />
 				<form on:submit|preventDefault={calculate}>
 					<SizeAdjustButtons
 						bind:value={equationCount}
@@ -48,7 +53,7 @@
 					<Matrix size={equationCount} bind:coefficients bind:constants />
 					<SolutionPanel solution={Array(equationCount).fill(null)} />
 					<div class="submit">
-						<span class='error-message'>{errorMessage}</span>
+						<span class="error-message">{errorMessage}</span>
 						<input type="reset" value="Clear" />
 						<input type="submit" value="Calculate" />
 					</div>
@@ -59,69 +64,69 @@
 </main>
 
 <style lang="scss">
-@import '@/constants.scss';
+	@import '@/constants.scss';
 
-:global(body) {
-	min-width: fit-content;
-	background-color: rgb(233, 215, 52);
-}
-
-main {
-	display: grid;
-	padding: 8px;
-	min-width: fit-content;
-	min-height: 100vh;
-
-	justify-content: center;
-	align-items: center;
-
-	.wrapper {
-		max-width: 600px;
+	:global(body) {
 		min-width: fit-content;
+		background-color: rgb(233, 215, 52);
 	}
 
-	header {
-		margin: 16px 0;
-		color: black;
-		text-shadow: 2px 2px 0px white;
-		font-family: 'Unbounded', sans-serif;
-	}
+	main {
+		display: grid;
+		padding: 8px;
+		min-width: fit-content;
+		min-height: 100vh;
 
-	.control-button {
-		background-color: red;
-		color: white;
-	}
+		justify-content: center;
+		align-items: center;
 
-	.window-body {
-		padding: 16px;	
+		.wrapper {
+			max-width: 600px;
+			min-width: fit-content;
+		}
 
-		form{
-			display: grid;
-			justify-content: center;
-			align-items: flex-end;
-			gap: 16px;
-			grid-auto-rows: auto;
-			grid-template-columns: auto 1fr auto;
-			grid-template-areas:
-				'size matrix solution'
-				'submit submit submit';
+		header {
+			margin: 16px 0;
+			color: black;
+			text-shadow: 2px 2px 0px white;
+			font-family: 'Unbounded', sans-serif;
+		}
 
-			.error-message {
-				color: red;
-			}
+		.control-button {
+			background-color: red;
+			color: white;
+		}
 
-			.submit {
-				width: 100%;
-				text-align: right;
-				grid-area: submit;
+		.window-body {
+			padding: 16px;
 
-				button,
-				input[type='submit'],
-				input[type='reset'] {
-					padding: 8px 16px;
+			form {
+				display: grid;
+				justify-content: center;
+				align-items: flex-end;
+				gap: 16px;
+				grid-auto-rows: auto;
+				grid-template-columns: auto 1fr auto;
+				grid-template-areas:
+					'size matrix solution'
+					'submit submit submit';
+
+				.error-message {
+					color: red;
+				}
+
+				.submit {
+					width: 100%;
+					text-align: right;
+					grid-area: submit;
+
+					button,
+					input[type='submit'],
+					input[type='reset'] {
+						padding: 8px 16px;
+					}
 				}
 			}
 		}
 	}
-}
 </style>
