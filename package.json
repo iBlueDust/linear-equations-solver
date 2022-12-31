@@ -15,7 +15,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "eslint .",
-		"postinstall": ""
+		"postinstall": "run-script-os",
+		"postinstall:win32": "pushd \"src/wasm\" && setup.bat && popd",
+		"postinstall:default": "pushd \"src/wasm\" && setup.sh && popd"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
