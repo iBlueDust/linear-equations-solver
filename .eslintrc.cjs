@@ -8,9 +8,9 @@ module.exports = {
 		'max-len': [1, { code: 80, comments: 80, ignoreUrls: true }],
 		'padding-line-between-statements': [
 			'error',
-			{ blankLine: 'always', prev: 'if', next: '*' },
-			{ blankLine: 'always', prev: 'while', next: '*' },
-			{ blankLine: 'always', prev: 'for', next: '*' }
+			{ blankLine: 'always', prev: 'if', next: 'block-like' },
+			{ blankLine: 'always', prev: 'while', next: 'block-like' },
+			{ blankLine: 'always', prev: 'for', next: 'block-like' }
 		]
 	},
 	ignorePatterns: ['*.cjs'],

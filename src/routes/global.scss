@@ -10,8 +10,10 @@ input {
 	min-height: 24px;
 }
 
-input[type=number] {
+input[type=number], input[type=decimal] {
 	appearance: textfield;
+	border: 0.5px solid lightgray;
+	border-bottom: 1px solid black;
 }
 
 input[type=number]::-webkit-outer-spin-button,

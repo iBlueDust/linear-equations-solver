@@ -9,7 +9,7 @@
 		if (!coefficients || !event.target) return
 
 		const { value } = event.target as HTMLInputElement
-		coefficients[i][j] = value === '' ? undefined : Number.parseInt(value)
+		coefficients[i][j] = value === '' ? undefined : Number.parseFloat(value)
 	}
 
 	// TODO: Fix this misleading name
@@ -17,7 +17,7 @@
 		if (!constants || !event.target) return
 
 		const { value } = event.target as HTMLInputElement
-		constants[i] = value === '' ? undefined : Number.parseInt(value)
+		constants[i] = value === '' ? undefined : Number.parseFloat(value)
 	}
 </script>
 
@@ -28,9 +28,9 @@
 				{#each Array(size) as _, j}
 					<td class="coefficient">
 						<input
-							type="number"
+							type="decimal"
 							name={`coefficient-${i}-${j}`}
-							value={coefficients?.[i][j]}
+							value={coefficients?.[i][j] ?? ''}
 							on:change={(...args) => onCoefficientChange(i, j, ...args)}
 						/><!--
 						-->{#if size <= commonVariables.length}
@@ -48,9 +48,9 @@
 				<td class="constant">
 					=
 					<input
-						type="number"
+						type="decimal"
 						name={`constant-${i}`}
-						value={constants?.[i]}
+						value={constants?.[i] ?? ''}
 						on:change={(...args) => onConstantChange(i, ...args)}
 					/>
 				</td>
@@ -60,57 +60,57 @@
 </div>
 
 <style lang="scss">
-@import '@/constants.scss';
+	@import '@/constants.scss';
 
-.matrix {
-	text-align: center;
+	.matrix {
+		text-align: center;
 
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto;
-	gap: 32px;
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		grid-template-columns: auto auto;
+		grid-template-rows: auto;
+		gap: 32px;
 
-	table {
-		margin: auto;
-	}
+		table {
+			margin: auto;
+		}
 
-	td {
-		height: $row-height;
-		padding: $padding 0.5ex;
-		white-space: nowrap;
+		td {
+			height: $row-height;
+			padding: $padding 0.5ex;
+			white-space: nowrap;
 
-		input {
-			width: 32px;
-			text-align: right;
-			border: 0.5px solid lightgray;
-			border-bottom: 1px solid black;
+			input {
+				width: 32px;
+				text-align: right;
+				border: 0.5px solid lightgray;
+				border-bottom: 1px solid black;
+			}
+		}
+
+		td.constant {
+			padding-left: 1ex;
+			background-color: rgba(0, 0, 0, 0.15);
+
+			input {
+				text-align: left;
+			}
+		}
+
+		tr {
+			display: block;
+			overflow: hidden;
+		}
+
+		tr:first-child td.constant {
+			border-top-left-radius: $small-border-radius;
+			border-top-right-radius: $small-border-radius;
+		}
+
+		tr:last-child td.constant {
+			border-bottom-left-radius: $small-border-radius;
+			border-bottom-right-radius: $small-border-radius;
 		}
 	}
-
-	td.constant {
-		padding-left: 1ex;
-		background-color: rgba(0, 0, 0, 0.15);
-
-		input {
-			text-align: left;
-		}
-	}
-
-	tr {
-		display: block;
-		overflow: hidden;
-	}
-
-	tr:first-child td.constant {
-		border-top-left-radius: $small-border-radius;
-		border-top-right-radius: $small-border-radius;
-	}
-
-	tr:last-child td.constant {
-		border-bottom-left-radius: $small-border-radius;
-		border-bottom-right-radius: $small-border-radius;
-	}
-}
 </style>
