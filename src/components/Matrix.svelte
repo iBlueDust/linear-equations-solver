@@ -77,15 +77,12 @@
 		}
 
 		td {
-			height: $row-height;
 			padding: $padding 0.5ex;
 			white-space: nowrap;
 
 			input {
-				width: 32px;
+				width: 2.5em;
 				text-align: right;
-				border: 0.5px solid lightgray;
-				border-bottom: 1px solid black;
 			}
 		}
 
@@ -99,6 +96,7 @@
 		}
 
 		tr {
+			height: $row-height;
 			display: block;
 			overflow: hidden;
 		}

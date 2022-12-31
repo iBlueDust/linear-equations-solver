@@ -1,10 +1,15 @@
 <script lang="ts">
-	export let solution: number[]
+	export let solution: (number | undefined)[]
 
 	const commonVariables = ['x', 'y', 'z']
 
-	const format = (x: number) =>
-		x == null ? '…' : x.toLocaleString('en-US', { maximumFractionDigits: 3 })
+	const format = (x?: number) => {
+		if (x == null) return '…'
+		if (Math.abs(x) < 1e-2 || Math.abs(x) > 1e2) return x.toExponential(2)
+
+		return x.toLocaleString('en-US', { maximumSignificantDigits: 3 })
+	}
+	// x == null ? '…' : x.toLocaleString('en-US', { maximumFractionDigits: 3 })
 </script>
 
 <table class="solution-panel">

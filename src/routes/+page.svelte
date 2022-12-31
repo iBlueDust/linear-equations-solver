@@ -14,12 +14,15 @@
 
 	let coefficients: (number | undefined)[][]
 	let constants: (number | undefined)[]
+	let solution: (number | undefined)[]
 
 	$: coefficients = Array(equationCount)
 		.fill(0)
 		.map(() => Array(equationCount).fill(undefined))
 
 	$: constants = Array(equationCount).fill(undefined)
+
+	$: solution = Array(equationCount).fill(undefined)
 
 	const calculate = async () => {
 		await initSolver()
@@ -34,7 +37,7 @@
 			if (constants[i] === undefined) constants[i] = 0
 		}
 
-		console.log(solve(coefficients as number[][], constants as number[]))
+		solution = solve(coefficients as number[][], constants as number[])
 	}
 </script>
 
@@ -62,7 +65,7 @@
 						max={MAX_EQUATION_COUNT}
 					/>
 					<Matrix size={equationCount} bind:coefficients bind:constants />
-					<SolutionPanel solution={Array(equationCount).fill(null)} />
+					<SolutionPanel {solution} />
 					<div class="submit">
 						<span class="error-message">{errorMessage}</span>
 						<input type="reset" value="Clear" />
@@ -113,8 +116,7 @@
 
 			form {
 				display: grid;
-				justify-content: center;
-				align-items: flex-end;
+				align-items: center;
 				gap: 16px;
 				grid-auto-rows: auto;
 				grid-template-columns: auto 1fr auto;
