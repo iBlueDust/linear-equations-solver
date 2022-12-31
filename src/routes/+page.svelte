@@ -25,6 +25,8 @@
 	$: solution = Array(equationCount).fill(undefined)
 
 	const calculate = async () => {
+		errorMessage = ''
+
 		await initSolver()
 
 		for (let i = 0; i < coefficients.length; i++) {
@@ -37,7 +39,11 @@
 			if (constants[i] === undefined) constants[i] = 0
 		}
 
-		solution = solve(coefficients as number[][], constants as number[])
+		try {
+			solution = solve(coefficients as number[][], constants as number[])
+		} catch (error) {
+			if (error instanceof Error) errorMessage = error.message
+		}
 	}
 </script>
 
@@ -58,7 +64,12 @@
 			<div class="window-body">
 				<p>Insert equations here</p>
 				<br />
-				<form on:submit|preventDefault={calculate}>
+				<form
+					on:submit|preventDefault={calculate}
+					on:reset={() => {
+						errorMessage = ''
+					}}
+				>
 					<SizeAdjustButtons
 						bind:value={equationCount}
 						min={MIN_EQUATION_COUNT}
@@ -67,7 +78,7 @@
 					<Matrix size={equationCount} bind:coefficients bind:constants />
 					<SolutionPanel {solution} />
 					<div class="submit">
-						<span class="error-message">{errorMessage}</span>
+						<small class="error-message">{errorMessage}</small>
 						<input type="reset" value="Clear" />
 						<input type="submit" value="Calculate" />
 					</div>
@@ -124,19 +135,33 @@
 					'size matrix solution'
 					'submit submit submit';
 
-				.error-message {
-					color: red;
-				}
-
 				.submit {
 					width: 100%;
 					text-align: right;
 					grid-area: submit;
 
+					display: flex;
+					flex-flow: row nowrap;
+
+					:not(:last-child) {
+						margin-right: 16px;
+					}
+
+					.error-message {
+						flex-grow: 1;
+						flex-shrink: 1;
+						align-self: center;
+
+						color: red;
+						display: inline-block;
+						padding-bottom: $small-shadow-size;
+					}
+
 					button,
 					input[type='submit'],
 					input[type='reset'] {
 						padding: 8px 16px;
+						align-self: flex-end;
 					}
 				}
 			}

@@ -77,6 +77,7 @@
 		}
 
 		td {
+			height: $row-height;
 			padding: $padding 0.5ex;
 			white-space: nowrap;
 
@@ -88,7 +89,7 @@
 
 		td.constant {
 			padding-left: 1ex;
-			background-color: rgba(0, 0, 0, 0.15);
+			background-color: rgba(0, 0, 0, 0.1);
 
 			input {
 				text-align: left;
@@ -98,7 +99,10 @@
 		tr {
 			height: $row-height;
 			display: block;
-			overflow: hidden;
+
+			&:not(:first-child :last-child) {
+				overflow: hidden;
+			}
 		}
 
 		tr:first-child td.constant {
