@@ -3,5 +3,8 @@
     "*.rmd": "markdown",
     "stdbool.h": "c",
     "stdlib.h": "c"
-  }
+	},
+	"cSpell.words": [
+		"Emscripten"
+	]
 }

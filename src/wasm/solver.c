@@ -78,6 +78,10 @@ EXTERN EMSCRIPTEN_KEEPALIVE bool solve(
 		return false;
 
 	double coefficientDeterminant = determinant(coefficientMatrix, N);
+	// If system of equations are inconsistent or cross-dependent
+	if (coefficientDeterminant == 0)
+		return false;
+
 	double* matrixCopy = malloc(N * N * sizeof(double));
 
 	memcpy(matrixCopy, coefficientMatrix, N * N * sizeof(double));

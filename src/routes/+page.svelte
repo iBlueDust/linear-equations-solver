@@ -4,7 +4,7 @@
 	import SolutionPanel from '@/components/SolutionPanel.svelte'
 	import Window from '@/components/Window.svelte'
 
-	import initSolver, { ping } from './solver'
+	import initSolver, { solve } from './solver'
 
 	let equationCount = 3
 	let errorMessage = ''
@@ -23,7 +23,18 @@
 
 	const calculate = async () => {
 		await initSolver()
-		ping()
+
+		for (let i = 0; i < coefficients.length; i++) {
+			for (let j = 0; j < coefficients[i].length; j++) {
+				if (coefficients[i][j] === undefined) coefficients[i][j] = 0
+			}
+		}
+
+		for (let i = 0; i < constants.length; i++) {
+			if (constants[i] === undefined) constants[i] = 0
+		}
+
+		console.log(solve(coefficients as number[][], constants as number[]))
 	}
 </script>
 
