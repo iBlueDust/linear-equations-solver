@@ -3,14 +3,19 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
+		"dev": "npm run build:wasm && vite dev",
+		"build": "npm run build:wasm && npm run build:svelte",
+		"build:svelte": "vite build",
+		"build:wasm": "run-script-os",
+		"build:wasm:win32": "pushd \"src/wasm\" && compile.bat && popd",
+		"build:wasm:default": "bash ./src/wasm/compile.sh",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"postinstall": ""
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -21,6 +26,7 @@
 		"eslint": "^8.28.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier-plugin-svelte": "^2.9.0",
+		"run-script-os": "^1.1.6",
 		"sass": "^1.57.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
