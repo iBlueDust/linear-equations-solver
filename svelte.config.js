@@ -9,7 +9,13 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		paths: {
+			// for gh-pages
+			base: process.env.NODE_ENV === 'production'
+				? '/linear-equations-solver'
+				: '',
+		}
 	}
 }
 
