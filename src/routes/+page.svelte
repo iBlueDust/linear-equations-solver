@@ -91,6 +91,8 @@
 <style lang="scss">
 	@import '@/constants.scss';
 
+	// TODO: Responsive design
+
 	:global(body) {
 		min-width: fit-content;
 		background-color: rgb(233, 215, 52);
@@ -98,7 +100,7 @@
 
 	main {
 		display: grid;
-		padding: 8px;
+		padding: $large-padding;
 		min-width: fit-content;
 		min-height: 100vh;
 
@@ -106,8 +108,8 @@
 		align-items: center;
 
 		.wrapper {
-			max-width: 600px;
-			min-width: fit-content;
+			width: fit-content;
+			min-width: 600px;
 		}
 
 		header {
