@@ -17,7 +17,7 @@
 		"lint": "eslint .",
 		"postinstall": "run-script-os",
 		"postinstall:win32": "pushd \"src/wasm\" && setup.bat && popd",
-		"postinstall:default": "pushd \"src/wasm\" && setup.sh && popd"
+		"postinstall:default": "bash ./src/wasm/setup.sh"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
