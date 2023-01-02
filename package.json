@@ -1,6 +1,6 @@
 {
 	"name": "linear-equations-solver",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "npm run build:wasm && vite dev",
