@@ -4,6 +4,8 @@ Small static WASM&nbsp;+&nbsp;Sveltekit webapp that solves systems of linear equ
 
 Written as an exercise and to learn WASM (C++).
 
+**View online [here](https://ibluedust.github.io/linear-equations-solver/)**
+
 ## Setup
 
 ```bash
