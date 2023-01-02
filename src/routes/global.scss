@@ -22,14 +22,14 @@ input[type=number]::-webkit-inner-spin-button {
 	margin: 0;
 }
 
-button, input[type=button], input[type=submit], input[type=reset] {
+button, a.button, input[type=button], input[type=submit], input[type=reset] {
 	background-color: hsla(0, 0%, 90%);
 	box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
 	border: 1px solid black;
 	border-radius: 4px;
 	cursor: pointer;
 
-	transition: all 0.25s cubic-bezier(0.215, 0.610, 0.355, 1);
+	transition: all $transition;
 
 	&:hover, &:focus {
 		background-color: hsl(0, 0%, 75%);
@@ -39,6 +39,10 @@ button, input[type=button], input[type=submit], input[type=reset] {
 	&:active {
 		background-color:hsl(0, 0%, 60%)
 	}
+}
+
+a.button {
+	text-decoration: none;
 }
 
 .material-symbols-outlined {

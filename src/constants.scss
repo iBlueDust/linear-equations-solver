@@ -9,3 +9,7 @@ $shadow-size: 8px;
 $small-shadow-size: 4px;
 
 $row-height: 36px;
+
+$transition-duration: 0.25s;
+$transition-interpolation: cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition: $transition-duration $transition-interpolation;

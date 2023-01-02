@@ -85,6 +85,12 @@
 				</form>
 			</div>
 		</Window>
+		<a
+			class="github-link"
+			href="https://github.com/iBlueDust/linear-equations-solver"
+		>
+			<img class="github-icon" src="./github-icon.svg" alt="See GitHub Repo" />
+		</a>
 	</div>
 </main>
 
@@ -113,7 +119,7 @@
 		}
 
 		header {
-			margin: 16px 0;
+			margin-bottom: $large-padding;
 			color: black;
 			text-shadow: 2px 2px 0px white;
 			font-family: 'Unbounded', sans-serif;
@@ -168,5 +174,40 @@
 				}
 			}
 		}
+	}
+
+	a.github-link {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+
+		margin-top: $padding;
+		width: 32px;
+		height: 32px;
+
+		border: 0 solid rgba(0, 0, 0, 0);
+		border-radius: $small-border-radius;
+
+		transition: border $transition;
+
+		&:focus,
+		&:hover {
+			border: 1px solid rgba(0, 0, 0, 1);
+
+			.github-icon {
+				opacity: 100%;
+			}
+		}
+	}
+
+	.github-icon {
+		display: block;
+		object-fit: contain;
+		width: 24px;
+		height: 24px;
+		margin: auto;
+		opacity: 75%;
+
+		transition: opacity $transition;
 	}
 </style>
