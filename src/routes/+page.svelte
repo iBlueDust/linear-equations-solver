@@ -187,12 +187,14 @@
 
 		border: 0 solid rgba(0, 0, 0, 0);
 		border-radius: $small-border-radius;
+		box-shadow: 0 0 0 rgba(64, 24, 0, 0.5);
 
-		transition: border $transition;
+		transition: all $transition;
 
 		&:focus,
 		&:hover {
 			border: 1px solid rgba(0, 0, 0, 1);
+			box-shadow: 4px 4px 0 rgba(64, 24, 0, 0.5);
 
 			.github-icon {
 				opacity: 100%;
